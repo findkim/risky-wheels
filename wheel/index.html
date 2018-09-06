@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Risky Wheels</title>	
+	<title>Fortnite: Risky Wheels</title>	
 	<link rel="stylesheet" type="text/css" href="public/style/style.css">
 	<script type=text/javascript src=https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js></script>
 	<link rel=stylesheet type=text/css href=https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css>
@@ -13,7 +13,7 @@
 <div>
 	<header><span class="title">Risky Wheels</span></header>
     <div id="wheel">
-        <canvas id="wheel-canvas" width="1000" height="600"></canvas>
+        <canvas id="wheel-canvas" width="800" height="600"></canvas>
 	</div>
     <div id="locations">
         <div class="row">
@@ -37,11 +37,14 @@
                         {{end}}
 					{{end}}
 					</ul>
-                    <input type="submit" name="updateLocation" value="Update">
+                    <input type="image" alt="submit" name="updateLocation" src="public/images/ready.jpg"></div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div class="footer">
+	<a href="https://github.com/findkim/risky-wheels" target="_blank"><img src="public/images/GitHub-Mark-64px.png"></a>
 </div>
 </body>
 
@@ -93,7 +96,7 @@
 		colors : [ '#fd7c66', '#eabc20', '#3b9fe8', '#53ff45', '#e2a3ff'],
 		segments : [],
 		seg_colors : [], // Cache of segments to colors
-		maxSpeed : Math.PI / 16,
+		maxSpeed : Math.PI / 8,
 		upTime : 1000, // How long to spin up for (in ms)
 		downTime : 5000, // How long to slow down for (in ms)
 		spinStart : 0,
@@ -321,7 +324,7 @@
 			ctx.closePath();
 
 			ctx.fillStyle   = '#ffffff';
-			ctx.strokeStyle = '#000000';
+			// ctx.strokeStyle = '#080F31';
 			ctx.fill();
 			ctx.stroke();
 
@@ -331,7 +334,7 @@
 			ctx.closePath();
 
 			ctx.lineWidth   = 10;
-			ctx.strokeStyle = '#000000';
+			ctx.strokeStyle = '#080F31';
 			ctx.stroke();
 		},
 	}

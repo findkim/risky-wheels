@@ -22,7 +22,15 @@ span.title {
     font-size: 500%;
     font-weight: 100;
     text-align: center;
-    padding-top: 10px;
+    padding: 25px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 /* #locations { */
@@ -30,9 +38,11 @@ span.title {
     margin: 0 auto;
     width: 50%;
     display: block;
-    background: rgba(25, 37, 79, 0.9);
+    background: rgba(8, 15, 49, 0.9);
     text-align: center;
     font-family: 'Noto Sans';
+    margin: auto auto 25px auto;
+    min-width: 600px;
 }
 
 /* Clear floats after the columns */
@@ -43,31 +53,43 @@ span.title {
 }
 
 .column {
-    padding: 20px;
-    width: 25%;
+    width: 30%;
     display: inline-block;
     text-align: left;
-    color: #5372B2;
+    color: #E3F1FB;
     font-size: 1em;
+    vertical-align: top;
+    margin: 0 2px;
 }
 
 .column h2 {
     text-align: center;
-    color: #C0CEE6;
+    color: #E3F1FB;
     background: #4D658E;
     text-transform: uppercase;
+    padding: 10px;
+    /* margin: 0 5px; */
+    /* width: 100%; */
+    font-weight: bold;
+}
+
+.column ul {
+    padding: 15px;
+}
+
+.column li {
+    padding-bottom: 5px;
 }
 
 img.hover-image{
     position:absolute;
-    height: 150px;
-    widows: 150px;
+    height: 200px;
+    widows: 200px;
 }
 
 #wheel {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
+    margin-right: -200px;
+    text-align: center;
     padding: 20px;
 }

@@ -4,12 +4,14 @@
 	<title>Risky Wheels</title>	
 	<link rel="stylesheet" type="text/css" href="public/style/style.css">
 	<script type=text/javascript src=https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js></script>
-	<link href=https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css rel=stylesheet type=text/css>
+	<link rel=stylesheet type=text/css href=https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css>
+	<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Noto+Sans">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 <div>
+	<header><span class="title">Risky Wheels</span></header>
     <div id="wheel">
         <canvas id="wheel-canvas" width="1000" height="600"></canvas>
 	</div>
@@ -17,7 +19,7 @@
         <div class="row">
             <form action="/locations" method="post">
                 <div class="column">
-					<h3>Named Locations</h3>
+					<h2>Named Locations</h2>
 					<ul>
                     {{with $1:=.NamedLocations}}
 						{{range $1}}
@@ -27,7 +29,7 @@
 					</ul>
                 </div>
                 <div class="column">
-					<h3>Unnamed Locations</h3>
+					<h2>Unnamed Locations</h2>
 					<ul>
                     {{with $1:=.UnnamedLocations}}
 						{{range $1}}
@@ -88,8 +90,7 @@
 		angleDelta : 0,
 		size : 290,
 		canvasContext : null,
-		colors : [ '#ffff00', '#ffc700', '#ff9100', '#ff6301', '#ff0000', '#c6037e',
-		           '#713697', '#444ea1', '#2772b2', '#0297ba', '#008e5b', '#8ac819', '#8ac819' ],
+		colors : [ '#fd7c66', '#eabc20', '#3b9fe8', '#53ff45', '#e2a3ff'],
 		segments : [],
 		seg_colors : [], // Cache of segments to colors
 		maxSpeed : Math.PI / 16,
@@ -219,7 +220,7 @@
 			var size = wheel.size;
 
 			ctx.lineWidth = 1;
-			ctx.strokeStyle = '#000000';
+			ctx.strokeStyle = '#ffffff';
 			ctx.fileStyle = '#ffffff';
 
 			ctx.beginPath();
@@ -238,9 +239,9 @@
 			// Now draw the winning name
 			ctx.textAlign = "left";
 			ctx.textBaseline = "middle";
-			ctx.fillStyle = '#000000';
-			ctx.font = "2em Arial";
-			ctx.fillText(wheel.segments[i], centerX + size + 25, centerY);
+			ctx.fillStyle = '#ffffff';
+			ctx.font = "2em Burbank Regular";
+			ctx.fillText(wheel.segments[i], centerX + size + 35, centerY);
 			console.log("drawNeedle");
 		},
 
@@ -279,11 +280,9 @@
 			ctx.translate(centerX, centerY);
 			ctx.rotate((lastAngle + angle) / 2);
 
-			ctx.fillStyle = '#000000';
+			ctx.fillStyle = "#ffffff";
 			ctx.fillText(value.substr(0, 20), size / 2 + 20, 0);
 			ctx.restore();
-
-			// ctx.restore();
 		},
 
 		drawWheel : function() {
@@ -305,11 +304,11 @@
 
 			var PI2 = Math.PI * 2;
 
-			ctx.lineWidth    = 1;
-			ctx.strokeStyle  = '#000000';
+			ctx.lineWidth    = 2;
+			ctx.strokeStyle  = '#ffffff';
 			ctx.textBaseline = "middle";
 			ctx.textAlign    = "center";
-			ctx.font         = "1.4em Arial";
+			ctx.font         = "1.4em Burbank Regular";
 
 			for (var i = 1; i <= len; i++) {
 				var angle = PI2 * (i / len) + angleCurrent;
@@ -318,7 +317,7 @@
 			}
 			// Draw a center circle
 			ctx.beginPath();
-			ctx.arc(centerX, centerY, 20, 0, PI2, false);
+			ctx.arc(centerX, centerY, 50, 0, PI2, false);
 			ctx.closePath();
 
 			ctx.fillStyle   = '#ffffff';

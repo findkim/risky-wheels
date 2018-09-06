@@ -1,6 +1,38 @@
-.column {
-    float: left;
-    width: 25%;
+@font-face {
+    font-family: "Burbank Regular";
+    src: url("burbank-big-regular-medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Burbank Big Condensed";
+    src: url("burbank-big-condensed-black.ttf") format("truetype");
+}
+
+body {
+    background-image: url("https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fannouncing-2018-2019-fortnite-competitive-season%2FBR04_Featured_EsportsAnnounce-1920x1080-ecd0a3d2677dffaf9e306a11a5d10d863432d059.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+span.title {
+    display: block;
+    color: white;
+    font-family: "Burbank Big Condensed";
+    font-size: 500%;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 10px;
+}
+
+/* #locations { */
+.row {
+    margin: 0 auto;
+    width: 50%;
+    display: block;
+    background: rgba(25, 37, 79, 0.9);
+    text-align: center;
+    font-family: 'Noto Sans';
 }
 
 /* Clear floats after the columns */
@@ -10,8 +42,32 @@
     clear: both;
 }
 
+.column {
+    padding: 20px;
+    width: 25%;
+    display: inline-block;
+    text-align: left;
+    color: #5372B2;
+    font-size: 1em;
+}
+
+.column h2 {
+    text-align: center;
+    color: #C0CEE6;
+    background: #4D658E;
+    text-transform: uppercase;
+}
+
 img.hover-image{
     position:absolute;
     height: 150px;
     widows: 150px;
+}
+
+#wheel {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding: 20px;
 }

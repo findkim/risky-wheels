@@ -15,7 +15,7 @@
 <div>
 	<header><span class="title">Risky Wheels</span></header>
     <div id="wheel">
-        <canvas id="wheel-canvas" width="800" height="600"></canvas>
+        <canvas id="wheel-canvas" width="900" height="600"></canvas>
 	</div>
     <div id="locations">
         <div class="row">
@@ -164,31 +164,24 @@
 		},
 
 		// initAudio : function() {
-		// 	console.log("initAudio")
 		// 	var sound = document.createElement('audio');
 		// 	sound.setAttribute('src', 'wheel.mp3');
 		// 	wheel.sound = sound;
 		// },
 
 		initCanvas : function() {
-			console.log("initCanvas");
             // var canvas = $('#wheel #canvas').get(0);
 			var canvas = document.getElementById("wheel-canvas")
-			console.log(canvas);
 			canvas.addEventListener("click", wheel.spin, false);
 			wheel.canvasContext = canvas.getContext("2d");
 		},
 
 		initWheel : function() {
-			console.log("initWheel");
-			console.log(wheel.colors);
 			shuffle(wheel.colors);
-			console.log(wheel.colors);
 		},
 
 		// Called when segments have changed
 		update : function() {
-			console.log("update")
 			// Ensure we start mid way on a item
 			//var r = Math.floor(Math.random() * wheel.segments.length);
 			var r = 0;
@@ -247,12 +240,9 @@
 			ctx.fillStyle = '#ffffff';
 			ctx.font = "2em Burbank Regular";
 			ctx.fillText(wheel.segments[i], centerX + size + 35, centerY);
-			console.log("drawNeedle");
 		},
 
 		drawSegment : function(key, lastAngle, angle) {
-			console.log("drawSegment")
-			console.log(key)
 			var ctx = wheel.canvasContext;
 			var centerX = wheel.centerX;
 			var centerY = wheel.centerY;
@@ -291,8 +281,6 @@
 		},
 
 		drawWheel : function() {
-			console.log("drawWheel");
-			console.log(wheel);
 			var ctx = wheel.canvasContext;
 
 			var angleCurrent = wheel.angleCurrent;

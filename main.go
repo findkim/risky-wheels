@@ -68,11 +68,15 @@ func newLocationCheckBoxes(locations []string, selectedLocations []string) []Loc
 	checkBoxes := make([]LocationCheckBox, len(locations))
 	for i, location := range locations {
 		_, selected := selectedLocationMap[location]
+		imgPath, ok := LocationImages[location]
+		if ok {
+			imgPath = fmt.Sprint(ImagesDir, imgPath)
+		}
 		checkBoxes[i] = LocationCheckBox{
 			Name:      "location",
 			Value:     location,
 			Selected:  selected,
-			ImagePath: fmt.Sprint(ImagesDir, LocationImages[location]),
+			ImagePath: imgPath,
 		}
 	}
 	return checkBoxes

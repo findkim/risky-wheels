@@ -24,19 +24,19 @@ const (
 	WailingWoods  = "Wailing Woods"
 
 	// Unnamed locations
-	BigChair         = "Big Chair"
-	Containers       = "Containers"
-	DeathMountain    = "Death Mountain"
-	Factories        = "Factories"
-	GhettoContainers = "Ghetto Containers"
-	GusTrack         = "Gus Race Track"
-	HeroHouse        = "Hero House"
-	LittleMexico     = "Little Mexico"
-	Motel            = "Motel"
-	SoccerStadium    = "Soccer Stadium"
-	TrailerPark      = "Trailer Park"
-	VillainVilla     = "Villain Villa"
-	VikingMountain   = "Viking Mountain"
+	ChestnutChair      = "Chestnut Chair"
+	ContainerCrypt     = "Container Crypt"
+	CrustyContainers   = "Crusty Containers"
+	DeathMountain      = "Death Mountain"
+	ForgottenFactories = "Forgotten Factories"
+	GusTrack           = "Gus Race Track"
+	HeroHall           = "Hero Hall"
+	LittleMexico       = "Little Mexico"
+	ModestMotel        = "Modest Motel"
+	SoccerStadium      = "Soccer Stadium"
+	TrailerPark        = "Trailer Park"
+	VillainVilla       = "Villain Villa"
+	VikingVillage      = "Viking Village"
 )
 
 var (
@@ -63,59 +63,38 @@ var (
 		WailingWoods,
 	}
 	UnnamedLocations = []string{
-		BigChair,
-		Containers,
+		ChestnutChair,
+		ContainerCrypt,
+		CrustyContainers,
 		DeathMountain,
-		Factories,
-		GhettoContainers,
+		ForgottenFactories,
 		GusTrack,
-		HeroHouse,
+		HeroHall,
 		LittleMexico,
-		Motel,
+		ModestMotel,
 		SoccerStadium,
 		TrailerPark,
 		VillainVilla,
-		VikingMountain,
+		VikingVillage,
 	}
-	AllLocations   = append(NamedLocations, UnnamedLocations...)
-	LocationCount  = len(NamedLocations) + len(UnnamedLocations)
-	ImagesDir      = "public/images/"
+	AllLocations  = append(NamedLocations, UnnamedLocations...)
+	LocationCount = len(NamedLocations) + len(UnnamedLocations)
+	ImagesDir     = "public/images/"
+	// LocationImages maps location to image file with map coordinates
+	// currently only supports unnamed locations
 	LocationImages = map[string]string{
-		// Named
-		DustyDivot:    "",
-		FatalFields:   "",
-		FlushFactory:  "",
-		GreasyGrove:   "",
-		HauntedHills:  "",
-		JunkJunction:  "",
-		LazyLinks:     "",
-		LonelyLodge:   "",
-		LootLake:      "",
-		LuckyLanding:  "",
-		ParadisePalms: "",
-		PleasantPark:  "",
-		RetailRow:     "",
-		RiskyReels:    "",
-		SaltySprings:  "season-5-map.jpg",
-		ShiftyShafts:  "",
-		SnobbyShores:  "",
-		TiltedTowers:  "",
-		TomatoTown:    "",
-		WailingWoods:  "",
-
-		// Unnamed
-		BigChair:         "",
-		Containers:       "",
-		DeathMountain:    "",
-		Factories:        "",
-		GhettoContainers: "",
-		GusTrack:         "",
-		HeroHouse:        "",
-		LittleMexico:     "",
-		Motel:            "",
-		SoccerStadium:    "",
-		TrailerPark:      "",
-		VillainVilla:     "",
-		VikingMountain:   "",
+		ChestnutChair:      "chestnut-chair.png",
+		ContainerCrypt:     "container-crypt.png",
+		DeathMountain:      "death-mountain.png",
+		ForgottenFactories: "forgotten-factories.png",
+		CrustyContainers:   "crusty-containers.png",
+		GusTrack:           "gus-track.png",
+		HeroHall:           "hero-hall.png",
+		LittleMexico:       "little-mexico.png",
+		ModestMotel:        "modest-motel.png",
+		SoccerStadium:      "soccer-stadium.png",
+		TrailerPark:        "trailer-park.png",
+		VillainVilla:       "villain-villa.png",
+		VikingVillage:      "viking-village.png",
 	}
 )

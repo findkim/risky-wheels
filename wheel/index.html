@@ -26,7 +26,7 @@
 					<ul>
                     {{with $1:=.NamedLocations}}
 						{{range $1}}
-						<li><input type="checkbox" name={{.Name}} value={{.Value}} {{if .Selected}}checked{{end}}><a class="hover-link" data-hover-image={{.ImagePath}}>{{.Value}}</a></li>
+						<li><input type="checkbox" name={{.Name}} value={{.Value}} {{if .Selected}}checked{{end}}>{{.Value}}</li>
                         {{end}}
 					{{end}}
 					</ul>

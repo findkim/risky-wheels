@@ -2,13 +2,14 @@
 <html>
 <head>
 	<title>Fortnite: Risky Wheels</title>
-	<link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+	<link rel="preload" as="image" href="https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fannouncing-2018-2019-fortnite-competitive-season%2FBR04_Featured_EsportsAnnounce-1920x1080-ecd0a3d2677dffaf9e306a11a5d10d863432d059.jpg">
+	<link rel="shortcut icon" type="image/x-icon" href="public/images/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="public/images/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="public/style/style.css">
 	<script type=text/javascript src=https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js></script>
 	<link rel=stylesheet type=text/css href=https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css>
 	<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Noto+Sans">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -151,10 +152,12 @@
 
 		init : function(optionList) {
 			try {
-				wheel.initWheel();
-				// wheel.initAudio();
-				wheel.initCanvas();
-				wheel.draw();
+				document.fonts.load('2em "Burbank Regular"').then(function(){
+					wheel.initWheel();
+					// wheel.initAudio();
+					wheel.initCanvas();
+					wheel.draw();
+				});
 
 				$.extend(wheel, optionList);
 

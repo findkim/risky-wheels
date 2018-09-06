@@ -30,12 +30,12 @@ const (
 	Factories        = "Factories"
 	GhettoContainers = "Ghetto Containers"
 	GusTrack         = "Gus Race Track"
-	Hero             = "Hero"
+	HeroHouse        = "Hero House"
 	LittleMexico     = "Little Mexico"
 	Motel            = "Motel"
-	SoccerField      = "Soccer Field"
+	SoccerStadium    = "Soccer Stadium"
 	TrailerPark      = "Trailer Park"
-	VillianLayer     = "Villian Layer"
+	VillainVilla     = "Villain Villa"
 	VikingMountain   = "Viking Mountain"
 )
 
@@ -69,16 +69,15 @@ var (
 		Factories,
 		GhettoContainers,
 		GusTrack,
-		Hero,
+		HeroHouse,
 		LittleMexico,
 		Motel,
-		SoccerField,
+		SoccerStadium,
 		TrailerPark,
-		VillianLayer,
+		VillainVilla,
 		VikingMountain,
 	}
-	AllLocations = append(NamedLocations, UnnamedLocations...)
-
+	AllLocations   = append(NamedLocations, UnnamedLocations...)
 	LocationCount  = len(NamedLocations) + len(UnnamedLocations)
 	ImagesDir      = "public/images/"
 	LocationImages = map[string]string{
@@ -111,12 +110,12 @@ var (
 		Factories:        "",
 		GhettoContainers: "",
 		GusTrack:         "",
-		Hero:             "",
+		HeroHouse:        "",
 		LittleMexico:     "",
 		Motel:            "",
-		SoccerField:      "",
+		SoccerStadium:    "",
 		TrailerPark:      "",
-		VillianLayer:     "",
+		VillainVilla:     "",
 		VikingMountain:   "",
 	}
 )

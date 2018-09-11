@@ -3,3 +3,6 @@ risky-wheels
 
 # images
 *.psd
+
+# config
+*.tf

@@ -14,6 +14,10 @@ const (
 	defaultCookieExpiry = time.Hour * 24 * 7
 )
 
+var (
+	zeroDuration time.Duration
+)
+
 func main() {
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("wheel/public"))))
 	http.HandleFunc("/", homePage)
@@ -21,74 +25,59 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
+// PageVariables contains template values
 type PageVariables struct {
-	NamedLocations   []LocationCheckBox
-	UnnamedLocations []LocationCheckBox
-	Wheel            Wheel
+	NamedLocations   Locations
+	UnnamedLocations Locations
 }
 
-type LocationCheckBox struct {
+type Locations []Location
+
+// Location manages metadata for a location
+type Location struct {
 	Name      string
 	Value     string
 	Selected  bool
 	ImagePath string
 }
 
-type Wheel struct {
-	LocationWeights map[string]int
-}
-
-func (w Wheel) Data() string {
-	var s string
-	for location, weight := range w.LocationWeights {
-		if s != "" {
-			s = fmt.Sprintf("%s;%s,%d", s, location, weight)
-		} else {
-			s = fmt.Sprintf("%s,%d", location, weight)
-		}
+// newLocationsCookie initializes a new cookie with list of locations
+func newLocationsCookie(locations []string, t time.Time, expiry time.Duration) *http.Cookie {
+	var expireTime time.Time
+	if expiry != zeroDuration {
+		expireTime = t.Add(defaultCookieExpiry)
 	}
-	return s
-}
 
-func newLocationsCookie(locations []string, t time.Time) *http.Cookie {
 	return &http.Cookie{
 		Name:    "locations",
 		Value:   strings.Join(locations, ","),
 		Path:    "/",
-		Expires: t.Add(defaultCookieExpiry),
+		Expires: expireTime,
 	}
 }
 
-func newLocationCheckBoxes(locations []string, selectedLocations []string) []LocationCheckBox {
+// newLocations initializes Locations object to manage metadata
+func newLocations(allLocations []string, selectedLocations []string) Locations {
 	selectedLocationMap := make(map[string]bool, len(selectedLocations))
 	for _, location := range selectedLocations {
 		selectedLocationMap[location] = true
 	}
 
-	checkBoxes := make([]LocationCheckBox, len(locations))
-	for i, location := range locations {
+	locations := make(Locations, len(allLocations))
+	for i, location := range allLocations {
 		_, selected := selectedLocationMap[location]
 		imgPath, ok := LocationImages[location]
 		if ok {
 			imgPath = fmt.Sprint(ImagesDir, imgPath)
 		}
-		checkBoxes[i] = LocationCheckBox{
+		locations[i] = Location{
 			Name:      "location",
 			Value:     location,
 			Selected:  selected,
 			ImagePath: imgPath,
 		}
 	}
-	return checkBoxes
-}
-
-func newWheelData(locations []string) Wheel {
-	locationWeights := make(map[string]int, len(locations))
-	for _, location := range locations {
-		// TODO hard coded
-		locationWeights[location] = 1
-	}
-	return Wheel{locationWeights}
+	return locations
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
@@ -100,7 +89,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		locationNames = strings.Split(locationsCookie.Value, ",")
 	case http.ErrNoCookie:
 		locationNames = NamedLocations
-		locationsCookie = newLocationsCookie(locationNames, time.Now())
+		locationsCookie = newLocationsCookie(locationNames, time.Now(), defaultCookieExpiry)
 		http.SetCookie(w, locationsCookie)
 	default:
 		log.Fatal("doh", err)
@@ -111,11 +100,9 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		log.Print("template parsing error: ", err)
 	}
 	pageVar := PageVariables{
-		NamedLocations:   newLocationCheckBoxes(NamedLocations, locationNames),
-		UnnamedLocations: newLocationCheckBoxes(UnnamedLocations, locationNames),
-		Wheel:            newWheelData(locationNames),
+		NamedLocations:   newLocations(NamedLocations, locationNames),
+		UnnamedLocations: newLocations(UnnamedLocations, locationNames),
 	}
-	fmt.Println(pageVar.Wheel.Data())
 	err = t.Execute(w, pageVar)
 	if err != nil {
 		log.Print("tempalte executing error: ", err)
@@ -126,6 +113,6 @@ func updateLocations(w http.ResponseWriter, r *http.Request) {
 	// Update cookie with user form
 	r.ParseForm()
 	newLocationNames := r.Form["location"]
-	http.SetCookie(w, newLocationsCookie(newLocationNames, time.Now()))
+	http.SetCookie(w, newLocationsCookie(newLocationNames, time.Now(), defaultCookieExpiry))
 	http.Redirect(w, r, "/", http.StatusFound)
 }

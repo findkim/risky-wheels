@@ -35,7 +35,7 @@ type Locations []Location
 
 // Location manages metadata for a location
 type Location struct {
-	Name      string
+	Type      string
 	Value     string
 	Selected  bool
 	ImagePath string
@@ -56,8 +56,7 @@ func newLocationsCookie(locations []string, t time.Time, expiry time.Duration) *
 	}
 }
 
-// newLocations initializes Locations object to manage metadata
-func newLocations(allLocations []string, selectedLocations []string) Locations {
+func newLocations(allLocations []string, selectedLocations []string, locationType string) Locations {
 	selectedLocationMap := make(map[string]bool, len(selectedLocations))
 	for _, location := range selectedLocations {
 		selectedLocationMap[location] = true
@@ -71,7 +70,7 @@ func newLocations(allLocations []string, selectedLocations []string) Locations {
 			imgPath = fmt.Sprint(ImagesDir, imgPath)
 		}
 		locations[i] = Location{
-			Name:      "location",
+			Type:      locationType,
 			Value:     location,
 			Selected:  selected,
 			ImagePath: imgPath,
@@ -100,8 +99,8 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		log.Print("template parsing error: ", err)
 	}
 	pageVar := PageVariables{
-		NamedLocations:   newLocations(NamedLocations, locationNames),
-		UnnamedLocations: newLocations(UnnamedLocations, locationNames),
+		NamedLocations:   newLocations(NamedLocations, locationNames, "named"),
+		UnnamedLocations: newLocations(UnnamedLocations, locationNames, "unnamed"),
 	}
 	err = t.Execute(w, pageVar)
 	if err != nil {

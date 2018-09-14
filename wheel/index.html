@@ -19,6 +19,7 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-125404892-1');
 	</script>
+	<script src="public/scripts/locations.js"></script>
 </head>
 
 <body>
@@ -36,20 +37,22 @@
 					<ul>
                     {{with $1:=.NamedLocations}}
 						{{range $1}}
-						<li><input type="checkbox" name={{.Name}} value={{.Value}} {{if .Selected}}checked{{end}}>{{.Value}}</li>
+						<li><input type="checkbox" name="location" class="namedLocationCheckbox" value={{.Value}} {{if .Selected}}checked{{end}}>{{.Value}}</li>
                         {{end}}
 					{{end}}
 					</ul>
+					<input type="checkbox" id="selectAllNamed" onclick='SelectAll("selectAllNamed", "namedLocationCheckbox")'/>Select All<br>
                 </div>
                 <div class="column">
 					<h2>Unnamed Locations</h2>
 					<ul>
                     {{with $1:=.UnnamedLocations}}
 						{{range $1}}
-                        <li><input type="checkbox" name={{.Name}} value={{.Value}} {{if .Selected}}checked{{end}}><a class="hover-link" data-hover-image={{.ImagePath}}>{{.Value}}</a></li>
+                        <li><input type="checkbox" name="location" class="unnamedLocationCheckbox" value={{.Value}} {{if .Selected}}checked{{end}}><a class="hover-link" data-hover-image={{.ImagePath}}>{{.Value}}</a></li>
                         {{end}}
 					{{end}}
 					</ul>
+					<input type="checkbox" id="selectAllUnnamed" onclick='SelectAll("selectAllUnnamed", "unnamedLocationCheckbox")'/>Select All<br><br>
                     <input type="image" alt="submit" name="updateLocation" src="public/images/ready.jpg">
                 </div>
             </form>

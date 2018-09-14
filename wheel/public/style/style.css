@@ -8,6 +8,11 @@
     src: url("burbank-big-condensed-black.ttf") format("truetype");
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
 body {
     background-image: url("https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fannouncing-2018-2019-fortnite-competitive-season%2FBR04_Featured_EsportsAnnounce-1920x1080-ecd0a3d2677dffaf9e306a11a5d10d863432d059.jpg");
     background-size: cover;
@@ -42,7 +47,7 @@ span.title {
     text-align: center;
     font-family: 'Noto Sans';
     margin: auto auto 25px auto;
-    min-width: 600px;
+    min-width: 450px;
 }
 
 /* Clear floats after the columns */
@@ -60,6 +65,7 @@ span.title {
     font-size: 1em;
     vertical-align: top;
     margin: 0 2px;
+    padding-bottom: 20px;
 }
 
 .column h2 {
@@ -90,4 +96,8 @@ img.hover-image{
     margin-right: -310px;
     text-align: center;
     padding: 20px;
+}
+
+#update {
+    max-width:100%;
 }

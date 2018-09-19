@@ -28,7 +28,7 @@ var wheel = {
 	timerDelay : 33,
 	angleCurrent : 0,
 	angleDelta : 0,
-	size : 290,
+	size : 0, // set on init, dependent on canvas size
 	canvasContext : null,
 	colors : [ '#fd7c66', '#eabc20', '#3b9fe8', '#53ff45', '#e2a3ff'],
 	segments : [],
@@ -107,10 +107,11 @@ var wheel = {
 	// },
 
 	initCanvas : function() {
-		// var canvas = $('#wheel #canvas').get(0);
 		var canvas = document.getElementById("wheel-canvas")
 		canvas.addEventListener("click", wheel.spin, false);
 		wheel.canvasContext = canvas.getContext("2d");
+		wheel.size = canvas.width * 0.75 * 0.4;
+		wheel.centerX = canvas.width / 2;
 	},
 
 	initWheel : function() {
@@ -159,7 +160,6 @@ var wheel = {
 		ctx.fileStyle = '#ffffff';
 
 		ctx.beginPath();
-
 		ctx.moveTo(centerX + size - 40, centerY);
 		ctx.lineTo(centerX + size + 20, centerY - 10);
 		ctx.lineTo(centerX + size + 20, centerY + 10);
@@ -176,7 +176,13 @@ var wheel = {
 		ctx.textBaseline = "middle";
 		ctx.fillStyle = '#ffffff';
 		ctx.font = "2em Burbank Regular";
-		ctx.fillText(wheel.segments[i], centerX + size + 35, centerY);
+		var words = wheel.segments[i].split(' ', 2);
+		if (words.length == 2) {
+			ctx.fillText(words[0], centerX + size + 35, centerY-15);
+			ctx.fillText(words[1], centerX + size + 35, centerY+25);
+		} else {
+			ctx.fillText(wheel.segments[i], centerX + size + 35, centerY);
+		}
 	},
 
 	drawSegment : function(key, lastAngle, angle) {
@@ -251,7 +257,6 @@ var wheel = {
 		ctx.closePath();
 
 		ctx.fillStyle   = '#ffffff';
-		// ctx.strokeStyle = '#080F31';
 		ctx.fill();
 		ctx.stroke();
 

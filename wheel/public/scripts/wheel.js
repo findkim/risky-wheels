@@ -40,6 +40,7 @@ var wheel = {
 	frames : 0,
 	centerX : 300,
 	centerY : 300,
+	initialized : false,
 
 	spin : function() {
 		// Start the wheel only if it's not already spinning
@@ -177,6 +178,11 @@ var wheel = {
 		ctx.fillStyle = '#ffffff';
 		ctx.font = "2em Burbank Regular";
 		var words = wheel.segments[i].split(' ', 2);
+		if (!wheel.initialized) {
+			words[0] = "Click";
+			words[1] = "to spin!";
+			wheel.initialized = true;
+		}
 		if (words.length == 2) {
 			ctx.fillText(words[0], centerX + size + 35, centerY-15);
 			ctx.fillText(words[1], centerX + size + 35, centerY+25);
